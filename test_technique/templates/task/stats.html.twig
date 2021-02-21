@@ -1,21 +1,26 @@
 {% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/task.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
 {% block body %}
-        <div style="text-align:center;">
+        <div class="taskTitle">
             <h1>{{ task.title }}</h1>
         </div>
     <div>
         <table class="table">
             <thead>
             <tr>
-                <th>{{ 'Task total time' }}</th>
-                <th>{{ 'Working hour average' }}</th>
-                <th>{{ 'Project related' }}</th>
+                <th>Task total time</th>
+                <th>Working hour average</th>
+                <th>Project related</th>
                 <th></th>
             </tr>
             </thead>
 
             <tbody>
-                <tr id="loader" style="opacity: 0;">
+                <tr id="loader">
                     <td id="totalTime">{{ task.startDate|date('Y-m-d-h-i') }}</td>
                     <td id="averageTime">{{ task.endDate ? task.endDate|date('Y-m-d-h-i') : '' }}</td>
                     <td style="color: {{ task.project.color }};">{{ task.project.name }}</td>
@@ -24,8 +29,8 @@
             <tfoot>
             <tr>
                 <td colspan="8">
-                    <div style="text-align:center;">
-                    <a href="{{ path('task_page') }}" class="btn btn-success">{{ 'See all tasks' }}</a>
+                    <div class="newBtn">
+                    <a href="{{ path('task_page') }}" class="btn btn-success">See all tasks</a>
                     </div>
                 </td>
             </tr>

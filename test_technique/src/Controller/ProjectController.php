@@ -11,6 +11,14 @@ use App\Form\Type\ProjectType;
 
 class ProjectController extends AbstractController
 {
+
+    private $em;
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     public function newProjectForm(Request $request): Response
     {
         $project = new Project();
@@ -19,9 +27,8 @@ class ProjectController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $project = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($project);
-            $em->flush();
+            $this->em->persist($project);
+            $this->em->flush();
 
             return $this->redirectToRoute('task_page');
         }

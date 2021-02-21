@@ -1,7 +1,12 @@
 {% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/task.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
 {% block body %}
-        <div style="text-align:center;">
-            <h1>{{ 'Tasks' }}</h1>
+        <div class="taskTitle">
+            <h1>Tasks</h1>
         </div>
         <div class="input-group col-lg-2">
             <form class="pull-right hidden" role="search" id="nav-search-form" method="post" action="{{ path('task_filter') }}">
@@ -13,25 +18,25 @@
             </div>
             </form>
         </div>
-        <div style="text-align:right; margin-right: 20px; font-weight: bold;">
-            <span>{{ 'Task done : ' }}</span>
+        <div class="taskDone">
+            <span>Task done : </span>
             <span id="tasksDone">{{ done }}</span>
         </div>
     <div>
         <table class="table">
             <thead>
             <tr>
-                <th>{{ 'Title' }}</th>
-                <th>{{ 'Start date' }}</th>
-                <th>{{ 'End date' }}</th>
-                <th>{{ 'Project' }}</th>
-                <th>{{ 'Done' }}</th>
-                <th>{{ 'Invoiced' }}</th>
+                <th>Title</th>
+                <th>Start date</th>
+                <th>End date</th>
+                <th>Project</th>
+                <th>Done</th>
+                <th>Invoiced</th>
                 <th></th>
             </tr>
             </thead>
 
-            <tbody id="loader" style="opacity: 0;">
+            <tbody id="loader">
             {% for item in list %}
                 <tr id="tableData-{{ item.id }}">
                     <td>{{ item.title }}</td>
@@ -44,7 +49,7 @@
                             <a onClick="doneAjax({{ item.id }});" class="btn btn-secondary"><img src="{{ asset('images/checked.svg') }}" alt="Done" /></a>
                             <a onClick="invoiceAjax({{ item.id }});" class="btn btn-secondary"><img src="{{ asset('images/bill.svg') }}" alt="Invoice" /></a>
                             <a href="{{ path('task_stats', {'task_id': item.id}) }}" class="btn btn-secondary"><img src="{{ asset('images/statistics.svg') }}" alt="View stats" /></a>
-                            <form style="display: inline;" action="{{ path('task_delete', {'task_id': item.id}) }}" method="post">
+                            <form class="taskSubmit" action="{{ path('task_delete', {'task_id': item.id}) }}" method="post">
                                 <button type="submit" class="btn btn-danger"><img src="{{ asset('images/delete.svg') }}" alt="Delete" /></button>
                             </form>
                     </td>
@@ -54,9 +59,9 @@
             <tfoot>
             <tr>
                 <td colspan="8">
-                    <div style="text-align:center;">
-                    <a href="{{ path('new_task_form') }}" class="btn btn-success">{{ 'Create a task' }}</a>
-                    <a href="{{ path('new_project_form') }}" class="btn btn-success">{{ 'Create a project' }}</a>
+                    <div class="newBtn">
+                    <a href="{{ path('new_task_form') }}" class="btn btn-success">Create a task</a>
+                    <a href="{{ path('new_project_form') }}" class="btn btn-success">Create a project</a>
                     </div>
                 </td>
             </tr>

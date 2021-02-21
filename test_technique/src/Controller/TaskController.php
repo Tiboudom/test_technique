@@ -19,6 +19,13 @@ use App\Form\Type\ProjectType;
 
 class TaskController extends AbstractController
 {
+    private $em;
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     public function newTaskForm(Request $request): Response
     {
         $repository = $this->getDoctrine()->getRepository(Project::class);
@@ -29,9 +36,8 @@ class TaskController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $task = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($task);
-            $em->flush();
+            $this->em->persist($task);
+            $this->em->flush();
 
             return $this->redirectToRoute('task_page');
         }
@@ -46,9 +52,8 @@ class TaskController extends AbstractController
         $taskId = $request->attributes->filter('task_id', false, FILTER_SANITIZE_NUMBER_INT);
         $repository = $this->getDoctrine()->getRepository(Task::class);
         $task = $repository->find($taskId);
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($task);
-        $em->flush();
+        $this->em->remove($task);
+        $this->em->flush();
 
         return $this->redirectToRoute('task_page');
     }
@@ -63,8 +68,7 @@ class TaskController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Task::class);
         $task = $repository->find($taskId);
         $task->setInvoiced(1-$task->getInvoiced());
-        $em = $this->getDoctrine()->getManager();
-        $em->flush();
+        $this->em->flush();
         
         $jsonContent = $serializer->serialize($task->getInvoiced(), 'json');
 
@@ -81,8 +85,7 @@ class TaskController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Task::class);
         $task = $repository->find($taskId);
         $task->setDone(1-$task->getDone());
-        $em = $this->getDoctrine()->getManager();
-        $em->flush();
+        $this->em->flush();
         
         $jsonContent = $serializer->serialize($task->getDone(), 'json');
 

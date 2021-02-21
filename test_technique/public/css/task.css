@@ -1,0 +1,21 @@
+.taskDone {
+    text-align:right;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.taskTitle {
+    text-align:center;
+}
+
+#loader {
+    opacity: 0;
+}
+
+.taskSubmit {
+    display: inline;
+}
+
+.newBtn {
+    text-align:center;
+}
