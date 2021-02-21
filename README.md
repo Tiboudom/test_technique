@@ -5,12 +5,12 @@ To run this project after cloning on your computer please follow the following s
 
 2 : configure the .env file with your own database informations
 
-3 : run composer install
+3 : run `composer install`
 
-4 : run php bin/console doctrine:database:create
+4 : run `php bin/console doctrine:database:create`
 
-5 : run php bin/console make:migration
+5 : run `php bin/console make:migration`
 
-6 : run php bin/console doctrine:migrations:migrate
+6 : run `php bin/console doctrine:migrations:migrate`
 
-7 : run symfony server:start
+7 : run `symfony server:start`
