@@ -2,8 +2,7 @@ version: '3'
 
 services:
   database:
-    build:
-      context: ./database
+    image: mysql:latest
     environment:
       - MYSQL_DATABASE=${DATABASE_NAME}
       - MYSQL_USER=${DATABASE_USER}
