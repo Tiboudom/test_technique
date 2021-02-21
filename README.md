@@ -3,14 +3,16 @@ To run this project after cloning on your computer please follow the following s
 
 1 : cd test_technique
 
-2 : configure the .env file with your own database informations
+2 : run `docker-compose up --build`
 
-3 : run `composer install`
+3 : open localhost in your browser
 
-4 : run `php bin/console doctrine:database:create`
+4 : adminer : localhost:8080 :
 
-5 : run `php bin/console make:migration`
+                    - server : database
 
-6 : run `php bin/console doctrine:migrations:migrate`
+                    - user : root
 
-7 : run `symfony server:start`
+                    - password : root
+
+                    - database : test_technique
