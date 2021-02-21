@@ -1,0 +1,36 @@
+new_project_form:
+    path: /newproject
+    controller: App\Controller\ProjectController::newProjectForm
+    methods: [POST, GET]
+new_task_form:
+    path: /newtask
+    controller: App\Controller\TaskController::newTaskForm
+    methods: [POST, GET]
+task_page:
+    path: /
+    controller: App\Controller\TaskController::task
+    methods: [GET]
+task_stats:
+    path: /{task_id}/stats
+    defaults: { _controller: 'App\Controller\TaskController::getTaskStats' }
+    methods: [GET]
+    requirements:
+        task_id: \d+
+task_delete:
+    path: /{task_id}/delete
+    defaults: { _controller: 'App\Controller\TaskController::deleteTask' }
+    methods: [POST]
+    requirements:
+        task_id: \d+
+task_filter:
+    path: /filter
+    defaults: { _controller: 'App\Controller\TaskController::getTaskFilter' }
+    methods: [POST]
+task_invoice:
+    path: /ajax_invoice
+    defaults: { _controller: 'App\Controller\TaskController::invoiceTask' }
+    methods: [POST]
+task_done:
+    path: /ajax_done
+    defaults: { _controller: 'App\Controller\TaskController::doneTask' }
+    methods: [POST]

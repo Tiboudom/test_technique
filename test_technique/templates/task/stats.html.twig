@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+        <div style="text-align:center;">
+            <h1>{{ task.title }}</h1>
+        </div>
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ 'Task total time' }}</th>
+                <th>{{ 'Working hour average' }}</th>
+                <th>{{ 'Project related' }}</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+                <tr id="loader" style="opacity: 0;">
+                    <td id="totalTime">{{ task.startDate|date('Y-m-d-h-i') }}</td>
+                    <td id="averageTime">{{ task.endDate ? task.endDate|date('Y-m-d-h-i') : '' }}</td>
+                    <td style="color: {{ task.project.color }};">{{ task.project.name }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="8">
+                    <div style="text-align:center;">
+                    <a href="{{ path('task_page') }}" class="btn btn-success">{{ 'See all tasks' }}</a>
+                    </div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/stats.js') }}"></script>
+{% endblock %}
