@@ -27,6 +27,8 @@ class TaskType extends AbstractType
             ->add('project', EntityType::class, [
                 'class'  => Project::class,
                 'choice_label' => "name",
+                'required' => true,
+                'placeholder' => 'Choose a project'
             ])
             ->add('save', SubmitType::class)
         ;

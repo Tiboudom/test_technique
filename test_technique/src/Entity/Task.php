@@ -44,7 +44,7 @@ class Task
 
     /**
      * @ORM\ManyToOne(targetEntity=Project::class, cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $project;
 
